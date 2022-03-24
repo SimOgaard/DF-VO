@@ -398,6 +398,24 @@ class DFVO():
                                     self.cur_data,
             )
 
+# region ADDED
+            # choose depth source
+            tmp_vis_depth = None
+            if self.cfg.visualization.depth.use_tracking_depth:
+                if self.cur_data.get('depth', -1) is -1: return
+                tmp_vis_depth = self.cur_data['depth']
+            else:
+                if self.cur_data.get('raw_depth', -1) is -1: return
+                tmp_vis_depth = self.cur_data['raw_depth']
+
+            depth_path = "{}/depth".format(self.cfg.directory.result_dir)
+            if (not os.path.exists(depth_path)):
+                os.makedirs(depth_path)
+
+            depth_image_path = "{}/{:06d}.png".format(depth_path, self.cur_data['id'])
+            cv2.imwrite(depth_image_path, tmp_vis_depth)
+# endregion
+
             self.tracking_stage += 1
 
             self.timers.end('DF-VO')

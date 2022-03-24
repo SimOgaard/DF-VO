@@ -69,5 +69,5 @@ for line in tqdm(timestamps_file):
     # plt.pause(0.01)
 
     # save image
-    img_path = os.path.join(args.result_dir, tokens[0] + '.jpg')
+    img_path = os.path.join(args.result_dir, tokens[0] + '.png')
     cv2.imwrite(img_path, cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
