@@ -412,8 +412,20 @@ class DFVO():
             if (not os.path.exists(depth_path)):
                 os.makedirs(depth_path)
 
-            depth_image_path = "{}/{:06d}.png".format(depth_path, self.cur_data['id'])
+            params = [[cv2.IMWRITE_EXR_TYPE_FLOAT]]
+            depth_image_path = "{}/{:06d}.exr".format(depth_path, self.cur_data['id'])
             cv2.imwrite(depth_image_path, tmp_vis_depth)
+
+            #depth_image_path = "{}/{:06d}.png".format(depth_path, self.cur_data['id'])
+            #cv2.imwrite(depth_image_path, tmp_vis_depth)
+
+            #depth_image_path = "{}/{:06d}.tiff".format(depth_path, self.cur_data['id'])
+            #cv2.imwrite(depth_image_path, tmp_vis_depth)
+
+            #depth_image_path = "{}/{:06d}.bytes".format(depth_path, self.cur_data['id'])
+            #img_bytes = cv2.imencode('.tiff', tmp_vis_depth)[1].tobytes() 
+            #with open(depth_image_path, "wb") as f:
+            #    f.write(img_bytes)
 # endregion
 
             self.tracking_stage += 1
