@@ -271,6 +271,8 @@ def load_kitti_raw_intrinsics(file_name, new_h, new_w):
     Returns:
         params (dict): each element contains [cx, cy, fx, fy]
     """
+    print(new_h)
+    print(new_w)
     raw_img_h = 370.0
     raw_img_w = 1226.0
     intrinsics = {}
@@ -281,10 +283,10 @@ def load_kitti_raw_intrinsics(file_name, new_h, new_w):
                 line_split = [float(i) for i in line.split(" ")[1:]]
                 cnt = int(line.split(":")[0][-2:])
                 intrinsics[cnt] = [
-                                line_split[2]/raw_img_w*new_w,
-                                line_split[6]/raw_img_h*new_h,
-                                line_split[0]/raw_img_w*new_w,
-                                line_split[5]/raw_img_h*new_h,
+                                line_split[2],#/raw_img_w*new_w,
+                                line_split[6],#/raw_img_h*new_h,
+                                line_split[0],#/raw_img_w*new_w,
+                                line_split[5],#/raw_img_h*new_h,
                                 ]
     return intrinsics
 

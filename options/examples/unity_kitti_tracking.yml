@@ -1,0 +1,24 @@
+# This configuration is used to read unity datset
+
+#-------------------------------------
+#- Basic setup
+#-------------------------------------
+dataset: kitti_raw                             # dataset [kitti_odom, kitti_raw, tum-1/2/3, adelaide1/2]
+image:
+    height: 480                                           # image height
+    width: 640                                           # image width
+    ext: png                                              # image file extension for data loading
+seq: "2022_01_01_realsense"                               # sequence to run
+
+#-------------------------------------
+#- Directories
+#-------------------------------------
+directory:
+    img_seq_dir: dataset/unity        # image data directory
+    gt_pose_dir: dataset/unity             # (optional) ground-truth pose data directory
+
+#-------------------------------------
+#- Tracking
+#-------------------------------------
+scale_recovery:                                           # scale recovery configuration
+    method: simple                                        # scale recovery method [simple, iterative]
