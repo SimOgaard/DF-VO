@@ -214,7 +214,7 @@ class TUM(Dataset):
 
         if self.data_dir['depth_src'] == "gt":
             img_name = "{:.6f}.png".format(img_id)
-            scale_factor = 5000
+            scale_factor = 65.53600311279297
         else:
             assert False, "Proper depth loader should be defined."
         
