@@ -7,7 +7,7 @@ dataset: kitti_raw                                       # dataset [kitti_odom, 
 image:
     height: 370                                           # image height
     width: 1226                                           # image width
-    ext: jpg                                              # image file extension for data loading
+    ext: png                                              # image file extension for data loading
 seq: "2011_09_26_drive_0005_sync"                                                 # sequence to run
 
 #-------------------------------------

@@ -572,7 +572,7 @@ class FrameDrawer():
             img_dir_path = os.path.join(
                 vo.cfg.directory.result_dir, "img_{}".format(vo.cfg.seq))
             mkdir_if_not_exists(img_dir_path)
-            img_path = os.path.join(img_dir_path, "{:06d}.jpg".format(vo.cur_data['id']))
+            img_path = os.path.join(img_dir_path, "{:06d}.png".format(vo.cur_data['id']))
             cv2.imwrite(img_path, self.img)
         
         cv2.imshow('DF-VO', self.img)

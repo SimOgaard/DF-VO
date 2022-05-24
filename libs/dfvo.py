@@ -28,6 +28,7 @@ from libs.matching.depth_consistency import DepthConsistency
 from libs.tracker import EssTracker, PnpTracker
 from libs.general.utils import *
 
+from PIL import Image
 
 
 class DFVO():
@@ -397,6 +398,49 @@ class DFVO():
                                     self.ref_data,
                                     self.cur_data,
             )
+
+# region ADDED
+            # choose depth source
+            tmp_vis_depth = None
+            if self.cur_data.get('raw_depth', -1) is not -1:
+                tmp_vis_depth = self.cur_data['raw_depth']
+            elif self.cur_data.get('depth', -1) is  not -1:
+                tmp_vis_depth = self.cur_data['depth']
+
+            depth_path = "{}/depth".format(self.cfg.directory.result_dir)
+            if (not os.path.exists(depth_path)):
+                os.makedirs(depth_path)
+            depth_image_path = "{}/{:06d}".format(depth_path, self.cur_data['id'])
+
+            #print(tmp_vis_depth.shape)
+            #print(tmp_vis_depth.dtype)
+            #print(tmp_vis_depth)
+
+            # Save as binary data
+            with open("{}.bytes".format(depth_image_path), "wb") as f:
+                # rescale depth to 01
+                tmp_vis_depth = (tmp_vis_depth - self.cfg.depth.min_depth) / (self.cfg.depth.max_depth - self.cfg.depth.min_depth)
+                # flipp y axis
+                tmp_vis_depth = np.flip(tmp_vis_depth, axis=1)
+                # save as binary data
+                f.write(tmp_vis_depth.tobytes())
+
+            # Convert to PIL Image and save
+            # Image.fromarray(tmp_vis_depth).save("{}.tif".format(depth_image_path))
+
+            # Cv2 to convert to exr/png/tif
+            #params = [[cv2.IMWRITE_EXR_TYPE_FLOAT]]
+            #cv2.imwrite("{}.exr".format(depth_image_path), tmp_vis_depth)
+
+            #cv2.imwrite("{}.png".format(depth_image_path), tmp_vis_depth)
+
+            #cv2.imwrite("{}.tif".format(depth_image_path), tmp_vis_depth)
+
+            # Cv2 to encode to
+            #img_bytes = cv2.imencode('.tiff', tmp_vis_depth)[1].tobytes() 
+            #with open("{}.bytes".format(depth_image_path), "wb") as f:
+            #    f.write(img_bytes)
+# endregion
 
             self.tracking_stage += 1
 

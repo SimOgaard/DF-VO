@@ -23,7 +23,7 @@ Notes:
     image:
         height: 192                         # image height
         width: 640                          # image width
-        ext: jpg                            # image file extension for data loading
+        ext: png                            # image file extension for data loading
     seq: "10"                               # sequence to run
     frame_step: 1                           # frame step
     
