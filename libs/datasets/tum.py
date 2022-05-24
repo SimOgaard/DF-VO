@@ -125,6 +125,7 @@ class TUM(Dataset):
                 'tum-1': [318.6, 255.3, 517.3, 516.5],  # fr1
                 'tum-2': [325.1, 249.7, 520.9, 521.0],  # fr2
                 'tum-3': [320.1, 247.6, 535.4, 539.2],  # fr3
+                'tum-4': [315.458, 242.638, 380.287, 379.689],  # fr4
             }
         intrinsics_param = tum_intrinsics[self.cfg.dataset]
         return intrinsics_param
@@ -214,7 +215,7 @@ class TUM(Dataset):
 
         if self.data_dir['depth_src'] == "gt":
             img_name = "{:.6f}.png".format(img_id)
-            scale_factor = 5000
+            scale_factor = 65.53600311279297
         else:
             assert False, "Proper depth loader should be defined."
         

@@ -103,8 +103,8 @@ def get_img_idxs(dataset, is_test):
 
 if __name__ == '__main__':
     # Basic setup
-    ref_h = 370
-    ref_w = 1226
+    ref_h = 480#370
+    ref_w = 640#1226
     
     # argument parsing
     args = argument_parsing()

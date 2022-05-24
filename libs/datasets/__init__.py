@@ -10,6 +10,7 @@ datasets = {
             "tum-1": TUM,
             "tum-2": TUM,
             "tum-3": TUM,
+            "tum-4": TUM,
             "adelaide1": Adelaide,
             "adelaide2": Adelaide,
             "kinect": Kinect,
